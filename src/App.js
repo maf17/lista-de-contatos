@@ -3,7 +3,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button, Container, Modal, ModalBody, ModalHeader, FormGroup, ModalFooter} from "reactstrap";
 import Filtrados from './components/filtrados';
-import {getAllContatos, criarContatos} from './api'
+import { getAllContatos, criarContatos, deletarContato } from './api'
 
 
 const data = [];
@@ -62,9 +62,9 @@ class App extends React.Component {
     this.setState({ modalInserir: false });
   };
 
-  mostrarConfirmacao = (dado) => {
+  mostrarConfirmacao = (valor) => {
     this.setState({
-      form: dado,
+      form: valor,
       modalConfirmacao: true
     });
     
@@ -96,31 +96,36 @@ class App extends React.Component {
     this.setState({data:contatos.data, modalInserir: false})
   }
   
-  editar = (dado) =>{
+  
+  editar = (valor) =>{
     let contador = 0;
     let lista = this.state.data;
     lista.map((registro)=>{
-      if(dado.id === registro.id){
-        lista[contador].nome = dado.nome;
-        lista[contador].email = dado.email;
-        lista[contador].telefone = dado.telefone;
+      if(valor.id === registro.id){
+        lista[contador].nome = valor.nome;
+        lista[contador].email = valor.email;
+        lista[contador].telefone = valor.telefone;
       }
       contador++;
     });
     this.setState({data: lista, modalAtualizar: false})
   }
 
-  apagar = (dado) =>{
+
+
+  apagar = (valor) =>{
     let contador = 0; 
-    let lista = this.state.data;
-    lista.map((registro) => { 
-        if(registro.id === dado.id){
+    let lista = deletarContato(this.state.form.id);
+    this.obterDados((registro) => { 
+        if(registro.id === valor.id){
           lista.splice(contador, 1);
         }
          contador++;
       });
       this.setState({data: lista, modalConfirmacao: false});
   }
+
+
 
   filtrar = (e) =>{
     const { value } = e.target;
@@ -230,7 +235,7 @@ class App extends React.Component {
         </Modal>
         <Modal isOpen = {this.state.modalConfirmacao}>
           <ModalHeader>
-            <h4> Deseja apagar o registro? </h4>
+            <h4> Tem certeza que deseja apagar o contato? </h4>
           </ModalHeader>
           <ModalBody>
             <Button color="primary" onClick={()=> this.apagar(this.state.form)}> Sim</Button> {"   "}

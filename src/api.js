@@ -17,9 +17,15 @@ export const deletarContato = async (id) => {
     return await axios.delete(url)
   }
 
+export const editarContato = async (id) => {
+    const url = `${baseUrl}/contatos/${id}`
+    return await axios.patch(url)
+}
+
 //export const getElement = async () => {
    // let conteudo = document.getElementById("contatos").value
    // const lista = { contatos: conteudo }
     //return await criar(lista)
 
 //}
+
