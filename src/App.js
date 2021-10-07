@@ -3,7 +3,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button, Container, Modal, ModalBody, ModalHeader, FormGroup, ModalFooter} from "reactstrap";
 import Filtrados from './components/filtrados';
-import { getAllContatos, criarContatos, deletarContato } from './api'
+import { getAllContatos, criarContatos, editarContato, deletarContato } from './api'
 
 
 const data = [];
@@ -41,15 +41,16 @@ class App extends React.Component {
   }
  
   //#região metodos de modales
-  mostrarModalAtualizar = (dado) => {
+  mostrarModalAtualizar = (valor) => {
     this.setState({
-      form: dado,
+      form: valor,
       modalAtualizar: true,
     });
   };
 
   fecharModalAtualizar = () => {
-    this.setState({ modalAtualizar: false });
+    this.setState({ modalAtualizar: false })
+
   };
 
   mostrarModalInserir = () => {
@@ -99,7 +100,7 @@ class App extends React.Component {
   
   editar = (valor) =>{
     let contador = 0;
-    let lista = this.state.data;
+    let lista = (this.state.data);
     lista.map((registro)=>{
       if(valor.id === registro.id){
         lista[contador].nome = valor.nome;
@@ -116,13 +117,13 @@ class App extends React.Component {
   apagar = (valor) =>{
     let contador = 0; 
     let lista = deletarContato(this.state.form.id);
-    this.obterDados((registro) => { 
+    this.obterDados((registro) => {
         if(registro.id === valor.id){
           lista.splice(contador, 1);
         }
          contador++;
       });
-      this.setState({data: lista, modalConfirmacao: false});
+      this.setState({data:[], lista, modalConfirmacao: false});
   }
 
 
@@ -142,7 +143,7 @@ class App extends React.Component {
       <>    
         <nav className="navbar navbar-dark bg-dark">
           <div class="container-fluid">
-            <a class="navbar-brand">Agenda de Contatos - <strong>Projeto React</strong></a>            
+            <a class="navbar-brand">Lista de Contatos - <strong>Projeto React</strong></a>            
             <form  class="d-flex">
               <input class="form-control me-2" onChange={this.filtrar} type="search" placeholder="Procurar" aria-label="Search"></input>"         "
             </form>
@@ -172,7 +173,7 @@ class App extends React.Component {
           <ModalBody>
             <FormGroup>
               <label>id:</label> 
-              <input className="form-control" readOnly type= "text" value = {this.state.data.length+1}/>
+              <input className="form-control" readOnly type= "text" defaultValue = {this.state.data.length+1}/>
             </FormGroup> 
 
             <FormGroup>
@@ -209,22 +210,22 @@ class App extends React.Component {
           <ModalBody>
             <FormGroup>
               <label>id:</label> 
-              <input className="form-control" readOnly type= "text" value={this.state.form.id}/>
+              <input className="form-control" readOnly type= "text" defaultValue={this.state.form.id}/>
             </FormGroup> 
 
             <FormGroup>
               <label>Nome</label> 
-              <input className="form-control" name="nome" type= "text" onChange={this.handleChange} value={this.state.form.nome}/>
+              <input className="form-control" name="nome" type= "text" onChange={this.handleChange} defaultValue={this.state.form.nome}/>
             </FormGroup> 
 
             <FormGroup>
               <label>Email</label> 
-              <input className="form-control" name="email" type= "text" onChange={this.handleChange} value={this.state.form.email}/>
+              <input className="form-control" name="email" type= "text" onChange={this.handleChange} defaultValue={this.state.form.email}/>
             </FormGroup> 
 
             <FormGroup>
               <label>Telefone</label> 
-              <input className="form-control" name="telefone" type= "text" onChange={this.handleChange} value={this.state.form.telefone}/>
+              <input className="form-control" name="telefone" type= "text" onChange={this.handleChange} defaultValue={this.state.form.telefone}/>
             </FormGroup> 
           </ModalBody>
 

@@ -19,7 +19,7 @@ export const deletarContato = async (id) => {
 
 export const editarContato = async (id) => {
     const url = `${baseUrl}/contatos/${id}`
-    return await axios.patch(url)
+    return await axios.put(url)
 }
 
 //export const getElement = async () => {
