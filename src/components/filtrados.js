@@ -15,7 +15,7 @@ const filtrados = ({data, apagar, editar}) =>{
                 </tr>
             </thead>
             <tbody>
-            {data.map((elemento)=>(
+            {data.map((elemento, id)=>(
                 <tr>
                 <td>{elemento.id}</td>
                 <td>{elemento.nome}</td>

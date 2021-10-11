@@ -35,7 +35,6 @@ class App extends React.Component {
       form:{
         ...this.state.form,
         [e.target.name]: e.target.value,
-        [e.target.name]: e.target.value,
       }
     })
   }
@@ -79,9 +78,10 @@ class App extends React.Component {
   //#região CRUD
   inserir = () =>{
     let valorNovo = this.state.form;
+    valorNovo.id = this.state.data.length+1;
     criarContatos(valorNovo)
-    this.obterDados ()
-    
+    this.obterDados({data: []})
+
     /*valorNovo.id = this.state.data.length + 1;
     let lista = this.state.data;
     lista.push(valorNovo)
@@ -94,9 +94,16 @@ class App extends React.Component {
 
   obterDados = async() => {
     let contatos = await getAllContatos ()
-    this.setState({data:contatos.data, modalInserir: false})
+    this.setState({data: contatos.data, modalInserir: false})
   }
   
+  /*componentWillUnmount (){
+    this.apagarDados()
+  }
+  apagarDados = async (id) => {
+    let deletar = await deletarContato (id)
+    this.obterDados({data: deletar.data, modalConfirmacao: false})
+  }*/
   
   editar = (valor) =>{
     let contador = 0;
@@ -123,7 +130,8 @@ class App extends React.Component {
         }
          contador++;
       });
-      this.setState({data:[], lista, modalConfirmacao: false});
+      this.setState({modalConfirmacao: false});
+
   }
 
 
@@ -143,7 +151,7 @@ class App extends React.Component {
       <>    
         <nav className="navbar navbar-dark bg-dark">
           <div class="container-fluid">
-            <a class="navbar-brand">Lista de Contatos - <strong>Projeto React</strong></a>            
+            <a class="navbar-brand">Lista de contatos - <strong>Projeto React</strong></a>            
             <form  class="d-flex">
               <input class="form-control me-2" onChange={this.filtrar} type="search" placeholder="Procurar" aria-label="Search"></input>"         "
             </form>
@@ -173,7 +181,7 @@ class App extends React.Component {
           <ModalBody>
             <FormGroup>
               <label>id:</label> 
-              <input className="form-control" readOnly type= "text" defaultValue = {this.state.data.length+1}/>
+              <input className="form-control" readOnly type= "text" value = {this.state.data.length+1}/>
             </FormGroup> 
 
             <FormGroup>
@@ -210,22 +218,22 @@ class App extends React.Component {
           <ModalBody>
             <FormGroup>
               <label>id:</label> 
-              <input className="form-control" readOnly type= "text" defaultValue={this.state.form.id}/>
+              <input className="form-control" readOnly type= "text" value={this.state.form.id}/>
             </FormGroup> 
 
             <FormGroup>
               <label>Nome</label> 
-              <input className="form-control" name="nome" type= "text" onChange={this.handleChange} defaultValue={this.state.form.nome}/>
+              <input className="form-control" name="nome" type= "text" onChange={this.handleChange} value={this.state.form.nome}/>
             </FormGroup> 
 
             <FormGroup>
               <label>Email</label> 
-              <input className="form-control" name="email" type= "text" onChange={this.handleChange} defaultValue={this.state.form.email}/>
+              <input className="form-control" name="email" type= "text" onChange={this.handleChange} value={this.state.form.email}/>
             </FormGroup> 
 
             <FormGroup>
               <label>Telefone</label> 
-              <input className="form-control" name="telefone" type= "text" onChange={this.handleChange} defaultValue={this.state.form.telefone}/>
+              <input className="form-control" name="telefone" type= "text" onChange={this.handleChange} value={this.state.form.telefone}/>
             </FormGroup> 
           </ModalBody>
 
