@@ -8,19 +8,16 @@ import { getAllContatos, criarContatos, editarContato, deletarContato } from './
 
 const data = [];
 
-/*const criarContatos = () => {
-  const conteudo = { nome: nome }
-  criarContatos(conteudo)
-}*/
+
 
 class App extends React.Component {
   state = {
     data: data,
     form: {
-      id: "",
       nome: "",
       email:"",
-      telefone: ""
+      telefone: "",
+      grupo: ""
     }, 
     dataSearch: [],
     modalInserir: false,
@@ -76,16 +73,12 @@ class App extends React.Component {
 //#endregião
   
   //#região CRUD
-  inserir = () =>{
+  inserir = async() =>{
     let valorNovo = this.state.form;
-    valorNovo.id = this.state.data.length+1;
-    criarContatos(valorNovo)
-    this.obterDados({data: []})
+    await criarContatos(valorNovo)
+    this.obterDados()
 
-    /*valorNovo.id = this.state.data.length + 1;
-    let lista = this.state.data;
-    lista.push(valorNovo)
-    this.setState({data: lista, modalInserir: false})*/
+  
   }
 
   componentDidMount () {
@@ -97,40 +90,23 @@ class App extends React.Component {
     this.setState({data: contatos.data, modalInserir: false})
   }
   
-  /*componentWillUnmount (){
-    this.apagarDados()
-  }
-  apagarDados = async (id) => {
-    let deletar = await deletarContato (id)
-    this.obterDados({data: deletar.data, modalConfirmacao: false})
-  }*/
+ 
   
-  editar = (valor) =>{
-    let contador = 0;
-    let lista = (this.state.data);
-    lista.map((registro)=>{
-      if(valor.id === registro.id){
-        lista[contador].nome = valor.nome;
-        lista[contador].email = valor.email;
-        lista[contador].telefone = valor.telefone;
-      }
-      contador++;
-    });
-    this.setState({data: lista, modalAtualizar: false})
+  editar = async(valor) =>{
+      const {id, ...data} = valor
+     await editarContato(id,data)
+    
+    this.setState({ modalAtualizar: false})
+    this.obterDados()
   }
 
 
 
   apagar = (valor) =>{
-    let contador = 0; 
-    let lista = deletarContato(this.state.form.id);
-    this.obterDados((registro) => {
-        if(registro.id === valor.id){
-          lista.splice(contador, 1);
-        }
-         contador++;
-      });
+    const {id} = valor 
+    deletarContato(id);
       this.setState({modalConfirmacao: false});
+      this.obterDados()
 
   }
 
@@ -150,10 +126,10 @@ class App extends React.Component {
     return (
       <>    
         <nav className="navbar navbar-dark bg-dark">
-          <div class="container-fluid">
-            <a class="navbar-brand">Lista de contatos - <strong>Projeto React</strong></a>            
-            <form  class="d-flex">
-              <input class="form-control me-2" onChange={this.filtrar} type="search" placeholder="Procurar" aria-label="Search"></input>"         "
+          <div className="container-fluid">
+            <a className="navbar-brand">Lista de contatos - <strong>Projeto React</strong></a>            
+            <form  className="d-flex">
+              <input className="form-control me-2" onChange={this.filtrar} type="search" placeholder="Procurar" aria-label="Search"></input>"         "
             </form>
             </div>
         </nav>        
@@ -179,11 +155,7 @@ class App extends React.Component {
           </ModalHeader>
 
           <ModalBody>
-            <FormGroup>
-              <label>id:</label> 
-              <input className="form-control" readOnly type= "text" value = {this.state.data.length+1}/>
-            </FormGroup> 
-
+           
             <FormGroup>
               <label>Nome</label> 
               <input className="form-control" name="nome" type= "text" onChange={this.handleChange}/>
@@ -198,6 +170,10 @@ class App extends React.Component {
               <label>Telefone</label> 
               <input className="form-control" name="telefone" type= "text" onChange={this.handleChange}/>
             </FormGroup> 
+            <FormGroup>
+              <label>Grupo</label> 
+              <input className="form-control" name="grupo" type= "text" onChange={this.handleChange} />
+            </FormGroup>
           </ModalBody>
 
           <ModalFooter>
@@ -216,10 +192,6 @@ class App extends React.Component {
           </ModalHeader>
 
           <ModalBody>
-            <FormGroup>
-              <label>id:</label> 
-              <input className="form-control" readOnly type= "text" value={this.state.form.id}/>
-            </FormGroup> 
 
             <FormGroup>
               <label>Nome</label> 
@@ -235,6 +207,11 @@ class App extends React.Component {
               <label>Telefone</label> 
               <input className="form-control" name="telefone" type= "text" onChange={this.handleChange} value={this.state.form.telefone}/>
             </FormGroup> 
+            <FormGroup>
+              <label>Grupo</label> 
+              <input className="form-control" name="grupo" type= "text" onChange={this.handleChange} value={this.state.form.grupo}/>
+            </FormGroup> 
+             
           </ModalBody>
 
           <ModalFooter>
