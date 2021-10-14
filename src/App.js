@@ -4,21 +4,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button, Container, Modal, ModalBody, ModalHeader, FormGroup, ModalFooter} from "reactstrap";
 import Filtrados from './components/filtrados';
 import { getAllContatos, criarContatos, editarContato, deletarContato } from './api'
+import Footer from "./Footer"
 
-
-const data = [];
-
-/*const criarContatos = () => {
-  const conteudo = { nome: nome }
-  criarContatos(conteudo)
-}*/
-
-class App extends React.Component {
+const data = [];class App extends React.Component {
   state = {
     data: data,
     form: {
       id: "",
-      nome: "",
       email:"",
       telefone: ""
     }, 
@@ -100,6 +92,7 @@ class App extends React.Component {
   
   editar = (valor) =>{
     let contador = 0;
+
     let lista = (this.state.data);
     lista.map((registro)=>{
       if(valor.id === registro.id){
