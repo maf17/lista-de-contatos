@@ -11,16 +11,18 @@ const filtrados = ({data, apagar, editar}) =>{
                     <th>Nome</th>
                     <th>Email</th>
                     <th>Telefone</th>
+                    <th>Grupo</th>
                     <th>Acões</th>
                 </tr>
             </thead>
             <tbody>
-            {data.map((elemento)=>(
+            {data.map((elemento, id)=>(
                 <tr>
                 <td>{elemento.id}</td>
                 <td>{elemento.nome}</td>
                 <td>{elemento.email}</td>
                 <td>{elemento.telefone}</td>
+                <td>{elemento.grupo}</td>
                 <td>
                     <Button color="primary" onClick={() => editar(elemento)}>Editar</Button>
                     <Button color="danger" onClick={() => apagar(elemento)}>Apagar</Button>
