@@ -12,7 +12,7 @@ const filtrados = ({data, apagar, editar}) =>{
                     <th>Email</th>
                     <th>Telefone</th>
                     <th>Grupo</th>
-                    <th>Acões</th>
+                    <th class="text-center">Acões</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,8 +23,8 @@ const filtrados = ({data, apagar, editar}) =>{
                 <td>{elemento.email}</td>
                 <td>{elemento.telefone}</td>
                 <td>{elemento.grupo}</td>
-                <td>
-                    <Button color="primary" onClick={() => editar(elemento)}>Editar</Button>
+                <td class="text-center">
+                    <Button color="primary" onClick={() => editar(elemento)}>Editar</Button>{' '}
                     <Button color="danger" onClick={() => apagar(elemento)}>Apagar</Button>
                 </td>
                 </tr>               
