@@ -45,10 +45,10 @@ export const FooterLink = styled.a`
 color: #fff;
 margin-bottom: 20px;
 font-size: 18px;
-text-decoration: none;
 
 &:hover {
-	color: blue;
+	color: #28a745;
+	text-decoration: none;
 	transition: 200ms ease-in;
 }
 `;
