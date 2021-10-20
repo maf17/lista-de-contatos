@@ -1,62 +1,32 @@
 {
   "contatos": [
     {
-      "id": 3,
-      "nome": "Testando",
-      "email": "teste@teste.com",
-      "telefone": "95-991477885"
+      "nome": "Manuel",
+      "email": "john@doe.emaile",
+      "telefone": "95-984092281",
+      "grupo": "Super-heróis",
+      "id": 3
     },
     {
-      "id": 4,
-      "nome": "Testando",
-      "email": "teste@teste.com",
-      "telefone": "95-991477885"
-    },
-    {
-      "id": 5,
-      "nome": "Testando",
-      "email": "teste@teste.com",
-      "telefone": "95-991477885"
-    },
-    {
-      "id": 6,
       "nome": "Testando",
       "email": "john@doe.emaile",
-      "telefone": "95-991477885"
-    },
-    {
-      "id": 7,
-      "nome": "Testando",
-      "email": "john@doe.emaile",
-      "telefone": "95-991477885"
-    },
-    {
-      "nome": "dully luengo",
-      "email": "rrulay_1978@hotmail.com",
-      "telefone": "33322555",
-      "grupo": "amigo",
-      "id": 9
-    },
-    {
-      "nome": "margloris",
-      "email": "johanenriqueluengo@gmail.com",
-      "telefone": "35995489",
-      "grupo": "familia",
-      "id": 11
-    },
-    {
-      "nome": "jesus",
-      "email": "alecarmen205@gmail.com",
-      "telefone": "35995489",
-      "grupo": "amigo",
+      "telefone": "95-984092281",
+      "grupo": "Vilões",
       "id": 12
     },
     {
-      "nome": "jesus",
-      "email": "rrulay_1978@hotmail.com",
-      "telefone": "33322589",
-      "grupo": "",
-      "id": 13
+      "nome": "Manuel",
+      "email": "teste@teste.com",
+      "telefone": "95-984092281",
+      "grupo": "Trabalho",
+      "id": 14
+    },
+    {
+      "nome": "Manuel",
+      "email": "teste@teste.com",
+      "telefone": "000-000000",
+      "grupo": "Amigos",
+      "id": 15
     }
   ]
 }

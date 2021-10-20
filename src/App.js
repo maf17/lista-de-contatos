@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Button, Container, Modal, ModalBody, ModalHeader, FormGroup, ModalFooter} from "reactstrap";
+import {Button, Container, Modal, ModalBody, ModalHeader, FormGroup, ModalFooter, Label, Input, Row} from "reactstrap";
 import Filtrados from './components/filtrados';
 import { getAllContatos, criarContatos, editarContato, deletarContato } from './api'
 import Footer from "./Footer"
@@ -123,9 +123,17 @@ class App extends React.Component {
       <>    
         <nav className="navbar navbar-dark bg-dark">
           <div className="container-fluid">
-            <a className="navbar-brand">Lista de contatos - <strong>Projeto React</strong></a>            
+            <a className="navbar-brand">Lista de contatos - <strong>Projeto React</strong></a>                                                                                                                                                                                                                     "
+            
             <form  className="d-flex">
-              <input className="form-control me-2" onChange={this.filtrar} type="search" placeholder="Procurar" aria-label="Search"></input>"         "
+            <Row form>
+              <div>
+                <Button color="success" onClick={()=>this.mostrarModalInserir()}>Adicionar novo contato</Button>'
+              </div>
+              <div>
+                <input className="form-control me-2" onChange={this.filtrar} type="search" placeholder="Procurar" aria-label="Search"></input>
+              </div>
+            </Row>
             </form>
             </div>
         </nav>        
@@ -137,10 +145,6 @@ class App extends React.Component {
             editar = {this.mostrarModalAtualizar}
           />   
           
-          <br />
-          <Button color="success" onClick={()=>this.mostrarModalInserir()}>Adicionar novo contato</Button>
-          <br />
-          <br/> 
         </Container>
         {/* Modal Inserir */}
         <Modal isOpen = {this.state.modalInserir}>
@@ -166,9 +170,17 @@ class App extends React.Component {
               <label>Telefone</label> 
               <input className="form-control" name="telefone" type= "text" onChange={this.handleChange}/>
             </FormGroup> 
+  
             <FormGroup>
-              <label>Grupo</label> 
-              <input className="form-control" name="grupo" type= "text" onChange={this.handleChange} />
+              <Label for="exampleSelect">Grupo</Label>
+              <Input type="select" name="grupo" id="exampleSelect" onChange={this.handleChange}>
+                <option value="" disabled selected>Selecione...</option>
+                <option>Familia</option>
+                <option>Amigos</option>
+                <option>Trabalho</option>
+                <option>Super-heróis</option>
+                <option>Vilões</option>
+              </Input>
             </FormGroup>
           </ModalBody>
 
@@ -205,7 +217,13 @@ class App extends React.Component {
             </FormGroup> 
             <FormGroup>
               <label>Grupo</label> 
-              <input className="form-control" name="grupo" type= "text" onChange={this.handleChange} value={this.state.form.grupo}/>
+              <Input className="form-control" name="grupo" type= "select" onChange={this.handleChange} value={this.state.form.grupo}>
+                <option>Familia</option>
+                <option>Amigos</option>
+                <option>Trabalho</option>
+                <option>Super-heróis</option>
+                <option>Vilões</option>
+              </Input>
             </FormGroup> 
              
           </ModalBody>
