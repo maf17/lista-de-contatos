@@ -22,10 +22,3 @@ export const editarContato = async (id,conteudo) => {
     return await axios.put(url,conteudo)
 }
 
-//export const getElement = async () => {
-   // let conteudo = document.getElementById("contatos").value
-   // const lista = { contatos: conteudo }
-    //return await criar(lista)
-
-//}
-
