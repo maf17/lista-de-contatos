@@ -30,7 +30,9 @@ const filtrados = ({data, apagar, editar}) =>{
                 </tr>               
             ))}
             </tbody>
+            
         </Table> 
+        
     )
 }
 

@@ -1,10 +1,9 @@
 import React from 'react';
-import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Button, Container, Modal, ModalBody, ModalHeader, FormGroup, ModalFooter, Label, Input, Row} from "reactstrap";
+import {Button, Container, Modal, ModalBody, ModalHeader, FormGroup, ModalFooter, Label, Input, Form} from "reactstrap";
 import Filtrados from './components/filtrados';
 import { getAllContatos, criarContatos, editarContato, deletarContato } from './api'
-import Footer from "./Footer"
+import Footer from './components/Footer';
 
 
 const data = [];
@@ -112,8 +111,6 @@ class App extends React.Component {
     const { value } = e.target;
     let lista = this.state.data;
     const filtered = lista.filter(fltr => fltr.nome.toLowerCase().includes(value.toLowerCase()));
-    
-    // this.setState({data: filtered});
     this.setState({ dataSearch: !value ?  [] : filtered});   
   }
   //#endregion
@@ -123,20 +120,26 @@ class App extends React.Component {
       <>    
         <nav className="navbar navbar-dark bg-dark">
           <div className="container-fluid">
-            <a className="navbar-brand">Lista de contatos - <strong>Projeto React</strong></a>                                                                                                                                                                                                                     "
-            
-            <form  className="d-flex">
-            <Row form>
+            <h1 style={{ 
+              color: "white",
+              fontSize: "30px" }} className="navbar-brand">List
+              <strong style={{ 
+              color: "#0069D9",
+              fontSize: "30px" }}>App+
+              </strong>Contatos</h1>
+            <Form inline>
+            <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
               <div>
-                <Button color="success" onClick={()=>this.mostrarModalInserir()}>Adicionar novo contato</Button>'
+                <Button color="success" onClick={()=>this.mostrarModalInserir()}>Adicionar novo contato</Button>
               </div>
+            </FormGroup>
               <div>
                 <input className="form-control me-2" onChange={this.filtrar} type="search" placeholder="Procurar" aria-label="Search"></input>
-              </div>
-            </Row>
-            </form>
+              </div> 
+            </Form>
             </div>
-        </nav>        
+        </nav>
+             
           
         <Container>             
           <Filtrados 
@@ -146,6 +149,9 @@ class App extends React.Component {
           />   
           
         </Container>
+
+        
+        
         {/* Modal Inserir */}
         <Modal isOpen = {this.state.modalInserir}>
           <ModalHeader>
@@ -233,6 +239,7 @@ class App extends React.Component {
             <Button color="danger" onClick={()=>this.fecharModalAtualizar()}>Cancelar</Button>
           </ModalFooter>
         </Modal>
+        
         <Modal isOpen = {this.state.modalConfirmacao}>
           <ModalHeader>
             <h4> Tem certeza que deseja apagar o contato? </h4>
@@ -242,6 +249,9 @@ class App extends React.Component {
             <Button color="danger" onClick={()=>this.fecharConfirmacao()}> Não</Button>
           </ModalBody>        
         </Modal>      
+        <div >
+        <Footer />
+        </div>
       </>
     );
   }
