@@ -8,8 +8,6 @@ import Footer from './components/Footer';
 
 const data = [];
 
-
-
 class App extends React.Component {
   state = {
     data: data,
@@ -70,15 +68,12 @@ class App extends React.Component {
   fecharConfirmacao = () =>{
     this.setState({ modalConfirmacao: false });
   }
-//#endregião
-  
-  //#região CRUD
+
   inserir = async() =>{
     let valorNovo = this.state.form;
     await criarContatos(valorNovo)
     this.obterDados()
 
-  
   }
 
   componentDidMount () {
