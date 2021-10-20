@@ -12,7 +12,8 @@ export const getAllContatos = async () => {
     return await axios.get(url)
 }
 
-export const deletarContato = async (id) =>     const url = `${baseUrl}/contatos/${id}`
+export const deletarContato = async (id) => {
+    const url = `${baseUrl}/contatos/${id}`
     return await axios.delete(url)
   }
 
