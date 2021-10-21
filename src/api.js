@@ -12,7 +12,8 @@ export const getAllContatos = async () => {
     return await axios.get(url)
 }
 
-export const deletarContato = async (id) =>     const url = `${baseUrl}/contatos/${id}`
+export const deletarContato = async (id) => {   
+    const url = `${baseUrl}/contatos/${id}`
     return await axios.delete(url)
   }
 
@@ -20,11 +21,4 @@ export const editarContato = async (id,conteudo) => {
     const url = `${baseUrl}/contatos/${id}`
     return await axios.put(url,conteudo)
 }
-
-//export const getElement = async () => {
-   // let conteudo = document.getElementById("contatos").value
-   // const lista = { contatos: conteudo }
-    //return await criar(lista)
-
-//}
 
